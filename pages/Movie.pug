@@ -1,0 +1,121 @@
+doctype html
+head
+  link(rel='stylesheet' href='/css/style.css')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+  style.
+    body{font-family: "Lucida Console", Monaco, monospaces;
+    background-image: url('img/ilovemb.jpg');
+    }
+    img{
+    background-color: aliceblue;
+    }
+    .title {
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    background:lightcyan;
+    }
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+    .column {
+    background-color: aliceblue;
+    padding: 30px;
+    margin-top: 20px;
+    }
+    .movieimg {
+    background-color:lightgrey;
+    width: 98%;
+    padding: 20px;
+    }
+    .rate {
+    text-align: right;
+    }
+    .btn {
+    border: none;
+    color: black;
+    background-color: lightcyan;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    }
+br
+.topBar
+  img(src='img/ilovem.jpg' alt='ilovem icion' width='150' height='80')
+  hr
+  a(href='http://localhost:3000') Home
+  a.curSelect(href='#movie') Movie
+  if session.loggedin
+    a(href='/profile') Profile
+  .searchBar
+    form(method="post" action="/movies")
+      label(for='movName')
+      input#movName(type='text' placeholder='Search Movie' name = 'movName')
+      button(type='submit')
+        i.fa.fa-search
+
+hr
+.title
+  h2 #{movie[0].Title}
+  p(style='font-size: small;') release year:#{movie[0].Released}  runtime:#{movie[0].Runtime}
+.row
+  .column
+    img(src=  link ,alt= " poster Picture")
+    br
+    br
+
+    p plot: #{movie[0].Plot}
+    p Director:
+    li
+      a(href='http://localhost:3000/people/' + otherName[0]) #{otherName[0]}
+    br
+    p writer:
+    for name in writerName
+      li
+        a(href='http://localhost:3000/people/' + name) #{name}
+    br
+    p Actors:
+    for name in actorName
+      li
+        a(href='http://localhost:3000/people/' + name) #{name}
+    br
+    p Country: #{movie[0].Country}
+    p Awards: #{movie[0].Awards}
+    p Genres: #{movie[0].Genre}
+    form(method="post" action= '/movies/' + movName)
+      button.btn(type='submit')  Add to Watchlist
+
+.row
+  .column
+    h2(style='font-size: medium;') Other Users Also Like This
+    for mov in recMovie
+      #movieInfo.mid-content
+        .img
+          a(href= 'http://localhost:3000/movies/' + mov.Title)
+            img(src=  mov.Poster ,alt= " poster Picture" width='300' height = '450')
+            P #{mov.Title}
+
+.row
+  .column
+    h2(style='font-size: medium;') User Reivews
+    .rate average rating: #{movie[0].imdbRating}/10
+    if session.hasReview
+      .movieimg(style='height:200px;') Review
+        each rev in session.user.reviews
+          p users: #{rev.username}
+          p review: #{rev.review}
+          hr
+    else
+      .movieimg(style='height:200px;') Review
+
+.row
+  .column
+    h2(style='font-size: medium;') Write a Review:
+    form(method="post" action='/reviewmovie/' + movName)
+      .movieimg(style='height:200px;')
+        label(for='moviewreview')
+        textarea(id="moviereview" name="moviereview" rows="9" cols="130")
+        br
+        button.btn(type='submit') Submit
