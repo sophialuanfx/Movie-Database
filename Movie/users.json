@@ -1,0 +1,3 @@
+[{"username":"Sophia","password":"12345","accountLevel":["contributing"],"reviews":[{"Title":"Toy Story", "Review":"Bad moive, but I like it"}], "following":[], "likedMovie ":[]},
+{"username":"Chen","password":"12345","accountLevel":["regular"],"reviews":[{"Title":"Jumanji", "Reivew":"Great Movie, like it"}], "following":[], "likedMovie ":[]},
+{"username":"Frank","password":"12345","accountLevel":["contributing"],"reviews":[{"Title":"Toy Story", "Review":"Nice moive, like it"}], "following":[], "likedMovie ":[]}]
