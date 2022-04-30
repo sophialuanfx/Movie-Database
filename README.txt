@@ -47,11 +47,6 @@
  	Sophia Luan #101035064,
 	Yanxi Chen #101118360，
 
-4. OpenStack instance information
-	ip: 134.117.133.188
-	username: student
-	password: student
-
 5. How to run the server on OpenStack instance
 	1. cd COMP2406_finalProject
 	2. /home/student/COMP2406_finalProject
